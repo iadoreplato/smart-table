@@ -40,10 +40,10 @@ return {                                            // расширьте сущ
 async function render(action) {
     let state = collectState(); // состояние полей из таблицы
     let query = {};
-    query = applyPagination(query, state, action); 
     query = applyFiltering(query, state, action);
     query = applySearching(query, state, action);
-    query = applySorting(query, state, action); // копируем для последующего изменения
+    query = applySorting(query, state, action);
+    query = applyPagination(query, state, action); // копируем для последующего изменения
     // @todo: использование
    const { total, items } = await api.getRecords(query);
     updatePagination(total, query); //вызывается асинхронная функция, которая возвращает объект
@@ -52,7 +52,7 @@ async function render(action) {
 
 const sampleTable = initTable({
     tableTemplate: 'table',
-    rowTemplate: 'row',
+    rowTemplate: 'row', 
     before: ['search', 'header', 'filter'],
     after: ['pagination']
 }, render);

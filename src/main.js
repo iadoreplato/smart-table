@@ -40,8 +40,8 @@ return {                                            // расширьте сущ
 async function render(action) {
     let state = collectState(); // состояние полей из таблицы
     let query = {};
-    query = applyFiltering(query, state, action);
     query = applySearching(query, state, action);
+    query = applyFiltering(query, state, action);
     query = applySorting(query, state, action);
     query = applyPagination(query, state, action); // копируем для последующего изменения
     // @todo: использование
